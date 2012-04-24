@@ -1,4 +1,5 @@
 (function (exports) {
+    "use strict";
 
     var sum, mean, deviation, variance, standardDeviation, standardize, correlation;
 
@@ -57,4 +58,4 @@
         })) / (x.length - 1);
     };
 
-}(typeof exports === "undefined" ? this["stats"] = {} : exports));
+}(typeof exports === "undefined" ? this.stats = {} : exports));
