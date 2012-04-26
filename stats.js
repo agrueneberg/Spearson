@@ -1,7 +1,7 @@
 (function (exports) {
     "use strict";
 
-    var sum, mean, deviation, variance, standardDeviation, standardize, correlation;
+    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation;
 
  // @param {[number]} x Array of numbers.
     exports.sum = sum = function (x) {
@@ -44,6 +44,31 @@
         sd = standardDeviation(x);
         return deviation(x).map(function (xi) {
             return xi / sd;
+        });
+    };
+
+ // @param {[number]} x Array of numbers.
+    exports.rank = rank = function (x) {
+        var ranks;
+     // Copy array.
+        ranks = x.slice();
+     // Sort array.
+        ranks.sort(function (a, b) {
+            return a - b;
+        });
+     // Calculate ranks.
+        return x.map(function (xi) {
+            var rank, first, last;
+         // Handle tied ranks.
+            first = ranks.indexOf(xi);
+            last = ranks.lastIndexOf(xi);
+            if (first === last) {
+                rank = first;
+            } else {
+                rank = (first + last) / 2;
+            }
+         // Add 1 because ranks start with 1.
+            return rank + 1;
         });
     };
 
