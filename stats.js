@@ -1,7 +1,7 @@
 (function (exports) {
     "use strict";
 
-    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation;
+    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance;
 
  // @param {[number]} x Array of numbers.
     exports.sum = sum = function (x) {
@@ -94,6 +94,27 @@
                 return 1 - ((6 * sum(x.map(function (xi, i) {
                     return Math.pow(xi - y[i], 2);
                 }))) / (x.length * (Math.pow(x.length, 2) - 1)));
+                break;
+        }
+    };
+
+ // @param {[number]} x Array of numbers.
+ // @param {[number]} y Array of numbers.
+ // @param {string} method "euclidean" (default) or "manhattan".
+    exports.distance = distance = function (x, y, method) {
+        if (["euclidean", "manhattan"].indexOf(method) === -1) {
+            method = "euclidean";
+        }
+        switch (method) {
+            case "euclidean":
+                return Math.sqrt(sum(x.map(function (xi, i) {
+                    return Math.pow(xi - y[i], 2);
+                })));
+                break;
+            case "manhattan":
+                return sum(x.map(function (xi, i) {
+                    return Math.abs(xi - y[i]);
+                }));
                 break;
         }
     };
