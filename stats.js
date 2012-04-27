@@ -1,7 +1,7 @@
 (function (exports) {
     "use strict";
 
-    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance;
+    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance, pairwiseDistance;
 
  // @param {[number]} x Array of numbers.
     exports.sum = sum = function (x) {
@@ -105,6 +105,19 @@
                 return Math.abs(xi - y[i]);
             }));
         }
+    };
+
+ // @param {[[number]]} x Array of array of numbers.
+ // @param {(x, y)} distance Distance function.
+    exports.pairwiseDistance = pairwiseDistance = function (x, distance) {
+        if (typeof distance !== "function") {
+            distance = this.distance.euclidean;
+        }
+        return x.map(function (v1) {
+            return x.map(function (v2) {
+                return distance(v1, v2);
+            });
+        });
     };
 
 }(typeof exports === "undefined" ? this.stats = {} : exports));
