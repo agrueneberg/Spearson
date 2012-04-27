@@ -75,47 +75,35 @@
  // Calculates the correlation coefficient for two variables.
  // @param {[number]} x Array of numbers.
  // @param {[number]} y Array of numbers.
- // @param {string} method "pearson" (default) or "spearman".
-    exports.correlation = correlation = function (x, y, method) {
-        if (["pearson", "spearman"].indexOf(method) === -1) {
-            method = "pearson";
-        }
-        switch (method) {
-            case "pearson":
-                x = standardize(x);
-                y = standardize(y);
-                return sum(x.map(function (xi, i) {
-                    return xi * y[i];
-                })) / (x.length - 1);
-                break;
-            case "spearman":
-                x = rank(x);
-                y = rank(y);
-                return 1 - ((6 * sum(x.map(function (xi, i) {
-                    return Math.pow(xi - y[i], 2);
-                }))) / (x.length * (Math.pow(x.length, 2) - 1)));
-                break;
+    exports.correlation = correlation = {
+        pearson: function (x, y) {
+            x = standardize(x);
+            y = standardize(y);
+            return sum(x.map(function (xi, i) {
+                return xi * y[i];
+            })) / (x.length - 1);
+        },
+        spearman: function (x, y) {
+            x = rank(x);
+            y = rank(y);
+            return 1 - ((6 * sum(x.map(function (xi, i) {
+                return Math.pow(xi - y[i], 2);
+            }))) / (x.length * (Math.pow(x.length, 2) - 1)));
         }
     };
 
  // @param {[number]} x Array of numbers.
  // @param {[number]} y Array of numbers.
- // @param {string} method "euclidean" (default) or "manhattan".
-    exports.distance = distance = function (x, y, method) {
-        if (["euclidean", "manhattan"].indexOf(method) === -1) {
-            method = "euclidean";
-        }
-        switch (method) {
-            case "euclidean":
-                return Math.sqrt(sum(x.map(function (xi, i) {
-                    return Math.pow(xi - y[i], 2);
-                })));
-                break;
-            case "manhattan":
-                return sum(x.map(function (xi, i) {
-                    return Math.abs(xi - y[i]);
-                }));
-                break;
+    exports.distance = distance = {
+        euclidean: function (x, y) {
+            return Math.sqrt(sum(x.map(function (xi, i) {
+                return Math.pow(xi - y[i], 2);
+            })));
+        },
+        manhattan: function (x, y) {
+            return sum(x.map(function (xi, i) {
+                return Math.abs(xi - y[i]);
+            }));
         }
     };
 
