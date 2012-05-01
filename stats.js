@@ -1,8 +1,15 @@
 (function (exports) {
     "use strict";
 
-    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance,
+    var round, sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance,
         pairwiseDistance, linkage, hierarchicalClustering;
+
+ // @param {number} x Value to round.
+ // @param {number} n Number of decimal places.
+    exports.round = round = function (x, n) {
+        n = typeof n === "number" ? n : 0;
+        return Math.round(x * Math.pow(10, n)) / Math.pow(10, n);
+    };
 
  // @param {[number]} x Array of numbers.
     exports.sum = sum = function (x) {
