@@ -73,6 +73,15 @@ describe("Stats", function () {
         });
     });
 
+    describe("rank", function () {
+        it("the rank of [54,17,8,109,78] is [3,2,1,5,4]", function () {
+         // Compare to MATLAB: tiedrank([54 17 8 109 78])
+            var res;
+            res = stats.rank([54, 17, 8, 109, 78]);
+            expect(res).to.eql([3, 2, 1, 5, 4]);
+        });
+    });
+
     describe("correlation", function () {
         describe("pearson", function () {
             it("the Pearson correlation coefficient of [1,7,2,3,4] and [9,3,5,2,1] is -0.6181", function () {
