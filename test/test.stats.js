@@ -10,4 +10,14 @@ describe("Stats", function () {
         });
     });
 
+    describe("mean", function () {
+        it("the mean of [1,2,3,4,5] is 3", function () {
+         // Compare to MATLAB: mean([1 2 3 4 5])
+         // Compare to R: mean(c(1,2,3,4,5))
+            var res;
+            res = stats.mean([1, 2, 3, 4, 5]);
+            expect(res).to.equal(3);
+        });
+    });
+
 });
