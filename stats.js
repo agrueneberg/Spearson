@@ -1,7 +1,8 @@
 (function (exports) {
     "use strict";
 
-    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance, pairwiseDistance;
+    var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance,
+        pairwiseDistance, linkage;
 
  // @param {[number]} x Array of numbers.
     exports.sum = sum = function (x) {
@@ -104,6 +105,38 @@
             return sum(x.map(function (xi, i) {
                 return Math.abs(xi - y[i]);
             }));
+        }
+    };
+
+ // @param {[[number]]} a Array of array of numbers (the members of a cluster).
+ // @param {[[number]]} b Array of array of numbers (the members of a cluster).
+ // @param {(x, y)} distance Distance metric.
+    exports.linkage = linkage = {
+        single: function (a, b, distance) {
+            var min, d;
+            min = Infinity;
+            a.map(function (x) {
+                b.map(function (y) {
+                    d = distance(x, y);
+                    if (d < min) {
+                        min = d;
+                    }
+                });
+            });
+            return min;
+        },
+        complete: function (a, b, distance) {
+            var max, d;
+            max = -Infinity;
+            a.map(function (x) {
+                b.map(function (y) {
+                    d = distance(x, y);
+                    if (d > max) {
+                        max = d;
+                    }
+                });
+            });
+            return max;
         }
     };
 
