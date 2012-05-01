@@ -14,7 +14,7 @@
         "type": "The MIT License",
         "url": "http://www.opensource.org/licenses/mit-license.php"
     }],
-    "main": "./spearson.js",
+    "main": "./lib/spearson.js",
     "devDependencies": {
         "mocha": "1.0.x",
         "expect.js": "0.1.x"

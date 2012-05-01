@@ -1,7 +1,7 @@
 var expect, spearson;
 
 expect = require("expect.js");
-spearson = require("../spearson.js");
+spearson = require("../lib/spearson.js");
 
 describe("Spearson", function () {
 
