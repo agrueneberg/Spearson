@@ -1,5 +1,18 @@
 describe("Stats", function () {
 
+    describe("round", function () {
+        it("the rounded value of 0.4281 is 0", function () {
+            var res;
+            res = stats.round(0.4281);
+            expect(res).to.equal(0);
+        });
+        it("the rounded value of 0.4281 with two decimal points is 0.43", function () {
+            var res;
+            res = stats.round(0.4281, 2);
+            expect(res).to.equal(0.43);
+        });
+    });
+
     describe("sum", function () {
         it("the sum of [1,2,3,4,5] is 15", function () {
          // Compare to MATLAB: sum([1 2 3 4 5])
