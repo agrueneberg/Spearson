@@ -92,11 +92,18 @@
             })) / (x.length - 1);
         },
         spearman: function (x, y) {
+            var xDeviation, yDeviation;
             x = rank(x);
             y = rank(y);
-            return 1 - ((6 * sum(x.map(function (xi, i) {
-                return Math.pow(xi - y[i], 2);
-            }))) / (x.length * (Math.pow(x.length, 2) - 1)));
+            xDeviation = deviation(x);
+            yDeviation = deviation(y);
+            return sum(xDeviation.map(function (xi, i) {
+                return xi * yDeviation[i];
+            })) / Math.sqrt(sum(xDeviation.map(function (xi) {
+                return Math.pow(xi, 2);
+            })) * sum(yDeviation.map(function (yi) {
+                return Math.pow(yi, 2);
+            })));
         }
     };
 

@@ -101,6 +101,14 @@ describe("Stats", function () {
                 res = stats.correlation.spearman([1, 7, 2, 3, 4], [9, 3, 5, 2, 1]);
                 expect(res).to.equal(-0.7);
             });
+            it("the Spearman correlation coefficient of [1,7,2,3,1] and [9,3,2,2,1] is 0.1579", function () {
+             // Compare to MATLAB: corr([1;7;2;3;1], [9;3;2;2;1], 'type', 'Spearman')
+             // Compare to R: cor(x=c(1,7,2,3,1), y=c(9,3,2,2,1), method="spearman")
+                var res;
+                res = stats.correlation.spearman([1, 7, 2, 3, 1], [9, 3, 2, 2, 1]);
+                res = stats.round(res, 4);
+                expect(res).to.equal(0.1579);
+            });
         });
     });
 
