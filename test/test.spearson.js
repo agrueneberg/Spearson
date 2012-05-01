@@ -1,3 +1,8 @@
+var expect, spearson;
+
+expect = require("expect.js");
+spearson = require("../spearson.js");
+
 describe("Spearson", function () {
 
     describe("round", function () {
