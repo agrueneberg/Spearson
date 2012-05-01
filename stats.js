@@ -2,7 +2,7 @@
     "use strict";
 
     var sum, mean, deviation, variance, standardDeviation, standardize, rank, correlation, distance,
-        pairwiseDistance, linkage;
+        pairwiseDistance, linkage, hierarchicalClustering;
 
  // @param {[number]} x Array of numbers.
     exports.sum = sum = function (x) {
@@ -151,6 +151,52 @@
                 return distance(v1, v2);
             });
         });
+    };
+
+ // @param {[[number]]} x Array of array of numbers.
+ // @param {(a, b, distance)} linkage Linkage criterion.
+ // @param {(x, y)} distance Distance metric.
+    exports.hierarchicalClustering = hierarchicalClustering = function (x, linkage, distance) {
+        var clusters;
+     // Initialize one clusters per observation.
+        clusters = {};
+        Object.keys(x).map(function (label) {
+            clusters[label] = [x[label]];
+        });
+        return (function rec(clusters, history) {
+            var labels, mergedClusters, mergedDistance, mergedLabel;
+            labels = Object.keys(clusters);
+            if (labels.length <= 1) {
+                return history;
+            }
+         // Find closest clusters, the candidates for merging.
+            mergedDistance = Infinity;
+            labels.map(function (labelA) {
+                labels.map(function (labelB) {
+                    var d;
+                 // Ignore clusters with the same name.
+                    if (labelA !== labelB) {
+                        d = linkage(clusters[labelA], clusters[labelB], distance);
+                        if (d < mergedDistance) {
+                            mergedDistance = d;
+                            mergedClusters = [labelA, labelB];
+                        }
+                    }
+                });
+            });
+         // Merge clusters.
+            mergedLabel = mergedClusters[0] + " / " + mergedClusters[1];
+            clusters[mergedLabel] = clusters[mergedClusters[0]].concat(clusters[mergedClusters[1]]);
+         // Remove obsolete clusters.
+            delete clusters[mergedClusters[0]];
+            delete clusters[mergedClusters[1]];
+         // Keep merge history.
+            history.push({
+                clusters: mergedClusters,
+                distance: mergedDistance
+            });
+            return rec(clusters, history);
+        }(clusters, []));
     };
 
 }(typeof exports === "undefined" ? this.stats = {} : exports));
