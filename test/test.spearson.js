@@ -1,4 +1,4 @@
-describe("Stats", function () {
+describe("Spearson", function () {
 
     describe("round", function () {
         it("the rounded value of 0.4281 is 0", function () {
