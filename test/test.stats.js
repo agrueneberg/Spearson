@@ -40,4 +40,15 @@ describe("Stats", function () {
         });
     });
 
+    describe("standardDeviation", function () {
+        it("the standard deviation of [1,2,3,4,5] is 1.5811", function () {
+         // Compare to MATLAB: std([1 2 3 4 5])
+         // Compare to R: sd(c(1,2,3,4,5))
+            var res;
+            res = stats.standardDeviation([1, 2, 3, 4, 5]);
+            res = stats.round(res, 4);
+            expect(res).to.equal(1.5811);
+        });
+    });
+
 });
