@@ -20,4 +20,14 @@ describe("Stats", function () {
         });
     });
 
+    describe("deviation", function () {
+        it("the deviation of [1,2,3,4,5] is [-2,-1,0,1,2]", function () {
+         // Compare to MATLAB: [1 2 3 4 5] - mean([1 2 3 4 5])
+         // Compare to R: c(1,2,3,4,5) - mean(c(1,2,3,4,5))
+            var res;
+            res = stats.deviation([1, 2, 3, 4, 5]);
+            expect(res).to.eql([-2, -1, 0, 1, 2]);
+        });
+    });
+
 });
