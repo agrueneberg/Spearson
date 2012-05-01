@@ -113,16 +113,31 @@ describe("Stats", function () {
     });
 
     describe("hierarchicalClustering", function () {
-        it("the distance at which all observations are merged into a single cluster is 126.7517", function () {
-         // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
-            var clust, res;
-            clust = stats.hierarchicalClustering([
-                [81, 91, 28, 96, 96],
-                [91, 63, 55, 16, 49],
-                [13, 10, 96, 97, 80]
-            ], stats.linkage.single, stats.distance.euclidean)
-            res = stats.round(clust[1].distance, 4)
-            expect(res).to.equal(126.7517);
+        describe("linkage.single", function () {
+            it("the distance at which all observations are merged into a single cluster is 126.7517", function () {
+             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
+                var clust, res;
+                clust = stats.hierarchicalClustering([
+                    [81, 91, 28, 96, 96],
+                    [91, 63, 55, 16, 49],
+                    [13, 10, 96, 97, 80]
+                ], stats.linkage.single, stats.distance.euclidean)
+                res = stats.round(clust[1].distance, 4)
+                expect(res).to.equal(126.7517);
+            });
+        });
+        describe("linkage.complete", function () {
+            it("the distance at which all observations are merged into a single cluster is 134.5214", function () {
+             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
+                var clust, res;
+                clust = stats.hierarchicalClustering([
+                    [81, 91, 28, 96, 96],
+                    [91, 63, 55, 16, 49],
+                    [13, 10, 96, 97, 80]
+                ], stats.linkage.complete, stats.distance.euclidean)
+                res = stats.round(clust[1].distance, 4)
+                expect(res).to.equal(134.5214);
+            });
         });
     });
 
