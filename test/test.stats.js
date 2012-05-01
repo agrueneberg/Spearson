@@ -51,4 +51,17 @@ describe("Stats", function () {
         });
     });
 
+    describe("correlation", function () {
+        describe("pearson", function () {
+            it("the Pearson correlation coefficient of [1,7,2,3,4] and [9,3,5,2,1] is -0.6181", function () {
+             // Compare to MATLAB: corr([1;7;2;3;4], [9;3;5;2;1])
+             // Compare to R: cor(c(1,7,2,3,4), c(9,3,5,2,1))
+                var res;
+                res = stats.correlation.pearson([1, 7, 2, 3, 4], [9, 3, 5, 2, 1]);
+                res = stats.round(res, 4);
+                expect(res).to.equal(-0.6181);
+            });
+        });
+    });
+
 });
