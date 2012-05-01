@@ -64,6 +64,15 @@ describe("Stats", function () {
         });
     });
 
+    describe("standardize", function () {
+        it("the z score of [1,3,2] is [-1,1,0]", function () {
+         // Compare to MATLAB: zscore([1,3,2])
+            var res;
+            res = stats.standardize([1, 3, 2]);
+            expect(res).to.eql([-1,1,0]);
+        });
+    });
+
     describe("correlation", function () {
         describe("pearson", function () {
             it("the Pearson correlation coefficient of [1,7,2,3,4] and [9,3,5,2,1] is -0.6181", function () {
