@@ -213,4 +213,4 @@
         }(clusters, []));
     };
 
-}(typeof exports === "undefined" ? this.stats = {} : exports));
+}(typeof exports === "undefined" ? this.spearson = {} : exports));
