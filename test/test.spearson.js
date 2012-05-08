@@ -133,7 +133,7 @@ describe("Spearson", function () {
         });
         describe("linkage.complete", function () {
             it("the distance at which all observations are merged into a single cluster is 134.5214", function () {
-             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
+             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]), 'complete')
                 var clust, res;
                 clust = spearson.hierarchicalClustering([
                     [81, 91, 28, 96, 96],
