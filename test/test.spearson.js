@@ -144,6 +144,19 @@ describe("Spearson", function () {
                 expect(res).to.equal(134.5214);
             });
         });
+        describe("linkage.upgma", function () {
+            it("the distance at which all observations are merged into a single cluster is 130.6365", function () {
+             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]), 'average')
+                var clust, res;
+                clust = spearson.hierarchicalClustering([
+                    [81, 91, 28, 96, 96],
+                    [91, 63, 55, 16, 49],
+                    [13, 10, 96, 97, 80]
+                ], spearson.linkage.upgma, spearson.distance.euclidean)
+                res = spearson.round(clust[1].distance, 4)
+                expect(res).to.equal(130.6365);
+            });
+        });
     });
 
 });
