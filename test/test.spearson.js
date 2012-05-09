@@ -65,13 +65,20 @@ describe("Spearson", function () {
     });
 
     describe("standardDeviation", function () {
-        it("the sample standard deviation of [1,2,3,4,5] is 1.5811", function () {
+        it("the unbiased sample standard deviation of [1,2,3,4,5] is 1.5811", function () {
          // Compare to MATLAB: std([1 2 3 4 5])
          // Compare to R: sd(c(1,2,3,4,5))
             var res;
             res = spearson.standardDeviation([1, 2, 3, 4, 5]);
             res = spearson.round(res, 4);
             expect(res).to.equal(1.5811);
+        });
+        it("the biased sample / population standard deviation of [1,2,3,4,5] is 1.4142", function () {
+         // Compare to MATLAB: std([1 2 3 4 5], 1)
+            var res;
+            res = spearson.standardDeviation([1, 2, 3, 4, 5], true);
+            res = spearson.round(res, 4);
+            expect(res).to.equal(1.4142);
         });
     });
 
