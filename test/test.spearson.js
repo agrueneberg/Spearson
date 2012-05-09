@@ -51,14 +51,13 @@ describe("Spearson", function () {
     describe("variance", function () {
         it("the unbiased sample variance of [1,2,3,4,5] is 2.5", function () {
          // Compare to MATLAB: sum(([1 2 3 4 5] - mean([1 2 3 4 5])) .^ 2) / (5 - 1)
-         // Compare to R: sum((c(1,2,3,4,5) - mean(c(1,2,3,4,5))) ^ 2) / (5 - 1)
+         // Compare to R: var(c(1,2,3,4,5))
             var res;
             res = spearson.variance([1, 2, 3, 4, 5]);
             expect(res).to.equal(2.5);
         });
-        it("the biased variance of [1,2,3,4,5] is 2", function () {
+        it("the biased sample / population variance of [1,2,3,4,5] is 2", function () {
          // Compare to MATLAB: sum(([1 2 3 4 5] - mean([1 2 3 4 5])) .^ 2) / 5
-         // Compare to R: sum((c(1,2,3,4,5) - mean(c(1,2,3,4,5))) ^ 2) / 5
             var res;
             res = spearson.variance([1, 2, 3, 4, 5], true);
             expect(res).to.equal(2);
@@ -66,7 +65,7 @@ describe("Spearson", function () {
     });
 
     describe("standardDeviation", function () {
-        it("the standard deviation of [1,2,3,4,5] is 1.5811", function () {
+        it("the sample standard deviation of [1,2,3,4,5] is 1.5811", function () {
          // Compare to MATLAB: std([1 2 3 4 5])
          // Compare to R: sd(c(1,2,3,4,5))
             var res;
