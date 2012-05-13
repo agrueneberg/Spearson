@@ -18,6 +18,22 @@ describe("Spearson", function () {
         });
     });
 
+    describe("min", function () {
+        it("the min of [7,8,1,2,5] is 1", function () {
+            var res;
+            res = spearson.min([7, 8, 1, 2, 5]);
+            expect(res).to.equal(1);
+        });
+    });
+
+    describe("max", function () {
+        it("the max of [7,8,1,2,5] is 8", function () {
+            var res;
+            res = spearson.max([7, 8, 1, 2, 5]);
+            expect(res).to.equal(8);
+        });
+    });
+
     describe("sum", function () {
         it("the sum of [1,2,3,4,5] is 15", function () {
          // Compare to MATLAB: sum([1 2 3 4 5])
