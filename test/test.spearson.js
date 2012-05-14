@@ -146,6 +146,24 @@ describe("Spearson", function () {
         });
     });
 
+    describe("pairwiseDistance", function () {
+        it("the pairwise distance of a bunch of numbers is [101.1039 126.7517 134.5214]", function () {
+         // Compare to MATLAB: squareform(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
+            var pdist;
+            pdist = spearson.pairwiseDistance([
+                [81, 91, 28, 96, 96],
+                [91, 63, 55, 16, 49],
+                [13, 10, 96, 97, 80]
+            ], spearson.distance.euclidean);
+            expect(pdist[0][0]).to.equal(0);
+            expect(pdist[1][1]).to.equal(0);
+            expect(pdist[2][2]).to.equal(0);
+            expect(spearson.round(pdist[0][1], 4)).to.equal(101.1039);
+            expect(spearson.round(pdist[0][2], 4)).to.equal(126.7517);
+            expect(spearson.round(pdist[1][2], 4)).to.equal(134.5214);
+        });
+    });
+
     describe("hierarchicalClustering", function () {
         describe("linkage.single", function () {
             it("the distance at which all observations are merged into a single cluster is 126.7517", function () {
