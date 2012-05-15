@@ -34,6 +34,16 @@ describe("Spearson", function () {
         });
     });
 
+    describe("range", function () {
+        it("returns a list of integers from start to stop", function () {
+            var range;
+            range = spearson.range(5, 10);
+            expect(range.length).to.equal(5);
+            expect(range[0]).to.equal(5);
+            expect(range[4]).to.equal(9);
+        });
+    });
+
     describe("sum", function () {
         it("the sum of [1,2,3,4,5] is 15", function () {
          // Compare to MATLAB: sum([1 2 3 4 5])
