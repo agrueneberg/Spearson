@@ -175,48 +175,46 @@ describe("Spearson", function () {
     });
 
     describe("hierarchicalClustering", function () {
-        describe("linkage.single", function () {
-            it("the distance at which all observations are merged into a single cluster is 126.7517", function () {
-             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
-                var clust, res;
-                clust = spearson.hierarchicalClustering([
+        describe("random", function () {
+            var pdist;
+            beforeEach(function () {
+                pdist = spearson.pairwiseDistance([
                     [81, 91, 28, 96, 96],
                     [91, 63, 55, 16, 49],
                     [13, 10, 96, 97, 80]
-                ], spearson.linkage.single, spearson.distance.euclidean)
-                res = spearson.round(clust[1].distance, 4)
-                expect(res).to.equal(126.7517);
+                ], spearson.distance.euclidean);
             });
-        });
-        describe("linkage.complete", function () {
-            it("the distance at which all observations are merged into a single cluster is 134.5214", function () {
-             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]), 'complete')
-                var clust, res;
-                clust = spearson.hierarchicalClustering([
-                    [81, 91, 28, 96, 96],
-                    [91, 63, 55, 16, 49],
-                    [13, 10, 96, 97, 80]
-                ], spearson.linkage.complete, spearson.distance.euclidean)
-                res = spearson.round(clust[1].distance, 4)
-                expect(res).to.equal(134.5214);
+            describe("linkage.single", function () {
+                it("the distance at which all observations are merged into a single cluster is 126.7517", function () {
+                 // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]))
+                    var clust, res;
+                    clust = spearson.hierarchicalClustering(pdist, "single");
+                    res = spearson.round(clust[0].distance, 4);
+                    expect(res).to.equal(126.7517);
+                });
             });
-        });
-        describe("linkage.upgma", function () {
-            it("the distance at which all observations are merged into a single cluster is 130.6365", function () {
-             // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]), 'average')
-                var clust, res;
-                clust = spearson.hierarchicalClustering([
-                    [81, 91, 28, 96, 96],
-                    [91, 63, 55, 16, 49],
-                    [13, 10, 96, 97, 80]
-                ], spearson.linkage.upgma, spearson.distance.euclidean)
-                res = spearson.round(clust[1].distance, 4)
-                expect(res).to.equal(130.6365);
+            describe("linkage.complete", function () {
+                it("the distance at which all observations are merged into a single cluster is 134.5214", function () {
+                 // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]), 'complete')
+                    var clust, res;
+                    clust = spearson.hierarchicalClustering(pdist, "complete");
+                    res = spearson.round(clust[0].distance, 4);
+                    expect(res).to.equal(134.5214);
+                });
+            });
+            describe("linkage.upgma", function () {
+                it("the distance at which all observations are merged into a single cluster is 130.6365", function () {
+                 // Compare to MATLAB: linkage(pdist([81 91 28 96 96; 91 63 55 16 49; 13 10 96 97 80]), 'average')
+                    var clust, res;
+                    clust = spearson.hierarchicalClustering(pdist, "upgma");
+                    res = spearson.round(clust[0].distance, 4);
+                    expect(res).to.equal(130.6365);
+                });
             });
         });
         describe("fisheriris", function () {
             it("the distance at which all observations are merged into a single cluster is 4.0627", function () {
-                var fisheriris, clust, res;
+                var fisheriris, pdist, clust, res;
                 fisheriris = [
                     [5.1, 3.5, 1.4, 0.2],
                     [4.9, 3, 1.4, 0.2],
@@ -369,8 +367,9 @@ describe("Spearson", function () {
                     [6.2, 3.4, 5.4, 2.3],
                     [5.9, 3, 5.1, 1.8]
                 ];
-                clust = spearson.hierarchicalClustering(fisheriris, spearson.linkage.upgma, spearson.distance.euclidean)
-                res = spearson.round(clust[148].distance, 4)
+                pdist = spearson.pairwiseDistance(fisheriris, spearson.distance.euclidean);
+                clust = spearson.hierarchicalClustering(pdist, "upgma");
+                res = spearson.round(clust[0].distance, 4);
                 expect(res).to.equal(4.0627);
             });
         });
