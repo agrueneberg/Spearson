@@ -6,6 +6,14 @@ spearson = require("../lib/spearson.js");
 describe("Spearson", function () {
 
     describe("round", function () {
+        it("the sort order of [5,2,3,10,9] is [2,3,5,9,10]", function () {
+            var res;
+            res = spearson.sort([5, 2, 3, 10, 9]);
+            expect(res).to.eql([2, 3, 5, 9, 10]);
+        });
+    });
+
+    describe("round", function () {
         it("the rounded value of 0.4281 is 0", function () {
             var res;
             res = spearson.round(0.4281);
