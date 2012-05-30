@@ -139,8 +139,18 @@ describe("Spearson", function () {
             it("the Pearson correlation coefficient of [1,7,2,3,4] and [9,3,5,2,1] is -0.6181", function () {
              // Compare to MATLAB: corr([1;7;2;3;4], [9;3;5;2;1])
              // Compare to R: cor(c(1,7,2,3,4), c(9,3,5,2,1))
-                var res;
-                res = spearson.correlation.pearson([1, 7, 2, 3, 4], [9, 3, 5, 2, 1]);
+                var x, y, res;
+                x = [1, 7, 2, 3, 4];
+                y = [9, 3, 5, 2, 1];
+                res = spearson.correlation.pearson(x, y);
+                res = spearson.round(res, 4);
+                expect(res).to.equal(-0.6181);
+            });
+            it("the Pearson correlation coefficient of pre-standardized [1,7,2,3,4] and [9,3,5,2,1] is -0.6181", function () {
+                var x, y, res;
+                x = spearson.standardize([1, 7, 2, 3, 4]);
+                y = spearson.standardize([9, 3, 5, 2, 1]);
+                res = spearson.correlation.pearson(x, y, false);
                 res = spearson.round(res, 4);
                 expect(res).to.equal(-0.6181);
             });
@@ -149,15 +159,36 @@ describe("Spearson", function () {
             it("the Spearman correlation coefficient of [1,7,2,3,4] and [9,3,5,2,1] is -0.7", function () {
              // Compare to MATLAB: corr([1;7;2;3;4], [9;3;5;2;1], 'type', 'Spearman')
              // Compare to R: cor(x=c(1,7,2,3,4), y=c(9,3,5,2,1), method="spearman")
-                var res;
-                res = spearson.correlation.spearman([1, 7, 2, 3, 4], [9, 3, 5, 2, 1]);
+                var x, y, res;
+                x = [1, 7, 2, 3, 4];
+                y = [9, 3, 5, 2, 1];
+                res = spearson.correlation.spearman(x, y);
                 expect(res).to.equal(-0.7);
             });
-            it("the Spearman correlation coefficient of [1,7,2,3,1] and [9,3,2,2,1] is 0.1579", function () {
+            it("the Spearman correlation coefficient of pre-ranked [1,7,2,3,4] and [9,3,5,2,1] is -0.7", function () {
+                var x, y, res;
+                x = spearson.rank([1, 7, 2, 3, 4]);
+                y = spearson.rank([9, 3, 5, 2, 1]);
+                res = spearson.correlation.spearman(x, y, false);
+                expect(res).to.equal(-0.7);
+            });
+            it("the Spearman correlation coefficient of [1,7,2,3,1] and [9,3,2,2,1] (both with tied ranks) is 0.1579", function () {
              // Compare to MATLAB: corr([1;7;2;3;1], [9;3;2;2;1], 'type', 'Spearman')
              // Compare to R: cor(x=c(1,7,2,3,1), y=c(9,3,2,2,1), method="spearman")
-                var res;
-                res = spearson.correlation.spearman([1, 7, 2, 3, 1], [9, 3, 2, 2, 1]);
+                var x, y, res;
+                x = [1, 7, 2, 3, 1];
+                y = [9, 3, 2, 2, 1];
+                res = spearson.correlation.spearman(x, y);
+                res = spearson.round(res, 4);
+                expect(res).to.equal(0.1579);
+            });
+            it("the Spearman correlation coefficient of pre-ranked [1,7,2,3,1] and [9,3,2,2,1] (both with tied ranks) is 0.1579", function () {
+             // Compare to MATLAB: corr([1;7;2;3;1], [9;3;2;2;1], 'type', 'Spearman')
+             // Compare to R: cor(x=c(1,7,2,3,1), y=c(9,3,2,2,1), method="spearman")
+                var x, y, res;
+                x = spearson.rank([1, 7, 2, 3, 1]);
+                y = spearson.rank([9, 3, 2, 2, 1]);
+                res = spearson.correlation.spearman(x, y, false);
                 res = spearson.round(res, 4);
                 expect(res).to.equal(0.1579);
             });
