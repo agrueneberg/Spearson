@@ -5,7 +5,7 @@ spearson = require("../lib/spearson.js");
 
 describe("Spearson", function () {
 
-    describe("round", function () {
+    describe("sort", function () {
         it("the sort order of [5,2,3,10,9] is [2,3,5,9,10]", function () {
             var res;
             res = spearson.sort([5, 2, 3, 10, 9]);
