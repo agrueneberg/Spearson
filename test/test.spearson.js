@@ -62,6 +62,30 @@ describe("Spearson", function () {
         });
     });
 
+    describe("median", function () {
+        it("the median of [1] is 1", function () {
+         // Compare to MATLAB: median([1])
+         // Compare to R: median(c(1))
+            var res;
+            res = spearson.mean([1]);
+            expect(res).to.equal(1);
+        });
+        it("the median of [1,2,3,4,5] is 3", function () {
+         // Compare to MATLAB: median([1 2 3 4 5])
+         // Compare to R: median(c(1,2,3,4,5))
+            var res;
+            res = spearson.mean([1, 2, 3, 4, 5]);
+            expect(res).to.equal(3);
+        });
+        it("the median of [1,2,3,4,5,6] is 3.5", function () {
+         // Compare to MATLAB: median([1 2 3 4 5 6])
+         // Compare to R: median(c(1,2,3,4,5,6))
+            var res;
+            res = spearson.mean([1, 2, 3, 4, 5, 6]);
+            expect(res).to.equal(3.5);
+        });
+    });
+
     describe("mean", function () {
         it("the mean of [1,2,3,4,5] is 3", function () {
          // Compare to MATLAB: mean([1 2 3 4 5])
