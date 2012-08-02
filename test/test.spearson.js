@@ -70,19 +70,33 @@ describe("Spearson", function () {
             res = spearson.median([1]);
             expect(res).to.equal(1);
         });
+        it("the median of [1,2] is 1.5", function () {
+         // Compare to MATLAB: median([1 2])
+         // Compare to R: median(c(1,2))
+            var res;
+            res = spearson.median([1, 2]);
+            expect(res).to.equal(1.5);
+        });
+        it("the median of [1,2,3] is 3", function () {
+         // Compare to MATLAB: median([1 2 3])
+         // Compare to R: median(c(1,2,3))
+            var res;
+            res = spearson.median([1, 2, 3]);
+            expect(res).to.equal(2);
+        });
+        it("the median of [1,2,3,4] is 2.5", function () {
+         // Compare to MATLAB: median([1 2 3 4])
+         // Compare to R: median(c(1,2,3,4))
+            var res;
+            res = spearson.median([1, 2, 3, 4]);
+            expect(res).to.equal(2.5);
+        });
         it("the median of [1,2,3,4,5] is 3", function () {
          // Compare to MATLAB: median([1 2 3 4 5])
          // Compare to R: median(c(1,2,3,4,5))
             var res;
             res = spearson.median([1, 2, 3, 4, 5]);
             expect(res).to.equal(3);
-        });
-        it("the median of [1,2,3,4,5,6] is 3.5", function () {
-         // Compare to MATLAB: median([1 2 3 4 5 6])
-         // Compare to R: median(c(1,2,3,4,5,6))
-            var res;
-            res = spearson.median([1, 2, 3, 4, 5, 6]);
-            expect(res).to.equal(3.5);
         });
     });
 
