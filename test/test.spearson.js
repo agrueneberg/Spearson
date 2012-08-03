@@ -11,6 +11,13 @@ describe("Spearson", function () {
             res = spearson.sort([5, 2, 3, 10, 9]);
             expect(res).to.eql([2, 3, 5, 9, 10]);
         });
+        it("should preserve the order of the original list", function () {
+            var list, res;
+            list = [5, 2, 3, 10, 9]
+            res = spearson.sort(list);
+            expect(res).to.eql([2, 3, 5, 9, 10]);
+            expect(list).to.eql([5, 2, 3, 10, 9]);
+        });
     });
 
     describe("round", function () {
