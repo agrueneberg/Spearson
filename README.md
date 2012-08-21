@@ -3,6 +3,10 @@ Spearson
 
 A poor man's stats library.
 
+Keep in mind that I am neither a statistician nor an expert on numerical computing. This library was only created because I needed to calculate both Spearman and Pearson correlation coefficients in the browser and couldn't find anything else that does it for me.
+
+Contributions are always welcome.
+
 [![Build Status](https://secure.travis-ci.org/agrueneberg/Spearson.png)](http://travis-ci.org/agrueneberg/Spearson)
 
 
