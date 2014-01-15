@@ -1,28 +1,23 @@
 {
     "name": "spearson",
-    "description": "A poor man's stats library.",
     "version": "0.0.1",
-    "author": {
-        "name": "Alexander Grüneberg",
-        "email": "alexander.grueneberg@googlemail.com"
-    },
+    "description": "A poor man's stats library.",
+    "bugs": "https://github.com/agrueneberg/Spearson/issues",
+    "license": "MIT",
+    "author": "Alexander Grüneberg <alexander.grueneberg@googlemail.com>",
+    "main": "./lib/spearson.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/agrueneberg/Spearson"
+        "url": "https://github.com/agrueneberg/Spearson.git"
     },
-    "licenses": [{
-        "type": "The MIT License",
-        "url": "http://www.opensource.org/licenses/mit-license.php"
-    }],
-    "main": "./lib/spearson.js",
+    "scripts": {
+        "test": "./node_modules/.bin/mocha"
+    },
     "devDependencies": {
         "mocha": "1.0.x",
         "expect.js": "0.1.x"
     },
     "engines": {
-        "node": "0.4.x || 0.6.x || 0.7.x"
-    },
-    "scripts": {
-        "test": "./node_modules/.bin/mocha"
+        "node": ">= 0.4.0"
     }
 }
